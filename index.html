@@ -37,325 +37,8 @@
   <!-- [BACKEND] Kakao JavaScript SDK (카카오톡 공유용)
      https://developers.kakao.com — 하단 SHARE_CONFIG.kakaoKey 에 JavaScript 키를 넣어 주세요. -->
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
-</head>
 
-<body>
-  <!-- ═══════════════════════════════
-       HEADER
-  ════════════════════════════════ -->
-  <header class="cb-header" id="top">
-    <div class="cb-header__inner">
-      <div class="cb-header__notice-wrap">
-        <!-- PC방 토글 -->
-        <button class="toggle-btn" type="button" id="pcRoomToggle" data-state="off" aria-label="PC방 모드 토글">
-          <img class="toggle-btn__img" src="assets/off=off.png" alt="PC방 모드 OFF" loading="lazy">
-        </button>
-        <!-- [BACKEND] 공지 텍스트 동적 교체: header_notice_text -->
-        <p class="cb-header__notice">
-          본 이벤트는 <a href="https://picaplay.com/pcbang/main.do" target="_blank" rel="noopener noreferrer"><u>피카플레이 가맹
-              PC방</u></a> 또는 <b>개인PC에서</b> <a href="https://www.craftbox.co.kr/" target="_blank"
-            rel="noopener noreferrer"><u>크래프트박스 설치</u></a> 후 참여 가능합니다.
-        </p>
-      </div>
-      <!-- [BACKEND] 공유하기 버튼 - share_url 교체 -->
-      <button class="btn-share" type="button" id="btnShare" aria-label="공유하기">
-        <img src="assets/share_icon.svg" alt="share icon">
-        <span>공유하기</span>
-      </button>
-    </div>
-  </header>
-
-  <div class="page">
-    <div class="page-ambient"></div>
-    <div id="content-wrap">
-
-      <!-- ===================== HERO ===================== -->
-      <section id="hero">
-        <div id="hero-bg-wrap">
-          <img class="slot-img" src="assets/hero-bg.webp" alt="히어로 배경">
-          <img class="moSlot-img" src="assets/forMobBg03.webp" alt="모바일 히어로 배경">
-        </div>
-        <div id="bubbles-kv"></div>
-        <div id="hero-rays-wrap">
-          <div id="hero-rays-glow"></div>
-          <div id="hero-rays-beams"></div>
-        </div>
-        <div id="hero-content-wrap">
-          <div id="hero-inner">
-            <div id="hero-logos">
-              <div id="hero-logo-torch-wrap"><img id="hero-logo-torch-img" src="assets/logo-torch.webp"
-                  alt="TORCHLIGHT"></div>
-              <span id="hero-logo-x">✕</span>
-              <div id="hero-logo-craft-wrap"><img id="hero-logo-craft-img" src="assets/logo-craft.webp" alt="CRAFTBOX">
-              </div>
-            </div>
-            <div id="hero-label">토치라이트: 인피니트 <span class="hero-label-x">✕</span> 피카플레이 미션 이벤트</div>
-            <h1 id="hero-h">
-              <span class="hero-h-highlight">PC방</span>에서 즐기고, <br>보상까지 챙겨라!
-            </h1>
-            <p id="hero-sub">
-              피카 PC방에서 토치라이트: 인피니트를 플레이하고<br>플레이 시간 보상을 획득하세요.
-            </p>
-            <div id="hero-period">
-              <div id="hero-period-item1">
-                <span id="hero-period-label1">이벤트 기간</span>
-                <span id="hero-period-value1">2026. 07. 17(금) - 2026. 07. 26(일)</span>
-              </div>
-              <div class="hp-div"></div>
-              <div id="hero-period-item2">
-                <span id="hero-period-label2">참여대상</span>
-                <span id="hero-period-value2">피카플레이 회원</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ◇ section divider ◇ -->
-      <div class="divider">
-        <div class="divider-line divider-line-left"></div>
-        <div class="divider-ornament">
-          <span class="dv-dot dv-dot-sm"></span>
-          <span class="dv-dot dv-dot-md"></span>
-          <span class="dv-dot dv-dot-lg"></span>
-          <span class="dv-chevron dv-chevron-l"></span>
-          <span class="dv-center">
-            <span class="dv-center-dot"></span>
-          </span>
-          <span class="dv-chevron dv-chevron-r"></span>
-          <span class="dv-dot dv-dot-lg"></span>
-          <span class="dv-dot dv-dot-md"></span>
-          <span class="dv-dot dv-dot-sm"></span>
-        </div>
-        <div class="divider-line divider-line-right"></div>
-      </div>
-
-      <!-- ===================== COUPON ===================== -->
-      <section data-sec id="coupon-section">
-        <div id="coupon-bg-wrap"><img class="slot-img" src="assets/bg-coupon.webp" alt=""></div>
-        <div id="coupon-overlay"></div>
-        <div id="coupon-inner">
-          <div data-fade data-card id="coupon-card">
-            <div class="card-border-frame"></div>
-            <div id="coupon-head-wrap">
-              <img id="coupon-deco-img" src="assets/titleDeco.webp" alt="">
-              <h2 data-couponhead id="coupon-head">
-                <span class="ch-cyan">PC방</span>에서도, 집에서도!<br>매일 토치라이트: 인피니트 <br class="forMo"> <span
-                  class="ch-cyan">1시간</span> 플레이하고<br><span class="ch-gold">1,000M</span> 받아가세요~
-              </h2>
-            </div>
-            <div data-couponimg id="coupon-img-wrap">
-              <img class="slot-img" src="assets/coupon-img.webp" alt="1,000M 쿠폰">
-            </div>
-            <p data-botline id="coupon-botline">일일 1회 미션 완료 시<br class="forMo"> <span class="botline-gold">1,000M
-                지급</span><br class="forMo"><span class="botline-note">(소진 시까지 참여 가능)</span></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ◇ section divider ◇ -->
-      <div class="dividerSec">
-        <div class="divider-line divider-line-left"></div>
-        <div class="divider-ornament">
-          <span class="dv-dot dv-dot-sm"></span>
-          <span class="dv-dot dv-dot-md"></span>
-          <span class="dv-dot dv-dot-lg"></span>
-          <span class="dv-chevron dv-chevron-l"></span>
-          <span class="dv-center">
-            <span class="dv-center-dot"></span>
-          </span>
-          <span class="dv-chevron dv-chevron-r"></span>
-          <span class="dv-dot dv-dot-lg"></span>
-          <span class="dv-dot dv-dot-md"></span>
-          <span class="dv-dot dv-dot-sm"></span>
-        </div>
-        <div class="divider-line divider-line-right"></div>
-      </div>
-
-      <!-- ===================== HOW TO ===================== -->
-      <section data-sec id="howto-section">
-        <div id="howto-bg-wrap"><img class="slot-img" src="assets/bg-howto.webp" alt=""></div>
-        <div id="howto-overlay"></div>
-        <div id="bubbles-ev2"></div>
-        <div id="howto-inner">
-          <div data-fade data-card id="howto-card">
-            <div class="card-border-frame"></div>
-            <div id="howto-head-wrap">
-              <img class="deco-img-sm" src="assets/titleDeco.webp" alt="">
-              <h2 data-h2 id="howto-title">이벤트 참여방법</h2>
-            </div>
-            <div id="howto-tabs-outer">
-              <div id="howto-tabs-inner">
-                <button type="button" id="tab-pc">PC방<br class="forMo"> 참여방법</button>
-                <button type="button" id="tab-personal">개인 PC <br class="forMo">참여방법</button>
-              </div>
-            </div>
-            <div id="steps"></div>
-            <p data-botline id="howto-botline">일일 1회 미션 완료 시<br class="forMo"> <span class="botline-blue">1,000M 지급<br
-                  class="forMo"></span><span class="botline-note">(소진 시까지 참여 가능)</span></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ◇ section divider ◇ -->
-      <div class="dividerNext">
-        <div class="divider-line divider-line-left"></div>
-        <div class="divider-ornament">
-          <span class="dv-dot dv-dot-sm"></span>
-          <span class="dv-dot dv-dot-md"></span>
-          <span class="dv-dot dv-dot-lg"></span>
-          <span class="dv-chevron dv-chevron-l"></span>
-          <span class="dv-center">
-            <span class="dv-center-dot"></span>
-          </span>
-          <span class="dv-chevron dv-chevron-r"></span>
-          <span class="dv-dot dv-dot-lg"></span>
-          <span class="dv-dot dv-dot-md"></span>
-          <span class="dv-dot dv-dot-sm"></span>
-        </div>
-        <div class="divider-line divider-line-right"></div>
-      </div>
-
-      <!-- ===================== MILEAGE ===================== -->
-      <section data-sec id="mileage-section">
-        <div id="mileage-bg-wrap"><img class="slot-img" src="assets/bg-mileage.webp" alt=""></div>
-        <div id="mileage-overlay"></div>
-        <div id="mileage-inner">
-          <div data-fade data-card id="mileage-card">
-            <div class="card-border-frame"></div>
-            <div id="mileage-head-wrap">
-              <img class="deco-img-sm" src="assets/titleDeco.webp" alt="">
-              <h2 data-h2 id="mileage-title">마일리지 사용처</h2>
-            </div>
-            <p data-mtext id="mileage-text">피카 가맹 PC방에서<br class="forMo"> <span class="mtext-accent">요금제 및 먹거리
-                결제</span><br>크래프트박스 또는 피카플레이 APP에서<br class="forMo"> <span class="mtext-accent">모바일 문화상품권으로 교환</span>
-            </p>
-            <div id="mileage-notes-wrap">
-              <p class="mileage-note">※ 미션으로 지급되는 <br class="forMo">마일리지의 유효기간은<br class="forMo"> 90일 입니다.</p>
-              <p class="mileage-note">※ 일부 매장에서는 마일리지 사용이 <br class="forMo">제한 될 수 있습니다.</p>
-            </div>
-            <div data-shots id="mileage-shots">
-              <div data-shot class="mileage-shot"><img class="slot-img" src="assets/mileage-shot-1.webp"
-                  alt="피카플레이 APP 화면"></div>
-              <div data-shot class="mileage-shot"><img class="slot-img" src="assets/mileage-shot-2.webp"
-                  alt="문화상품권 교환 화면"></div>
-            </div>
-            <div id="mileage-btn-wrap">
-              <a href="https://ics.mediaweb.co.kr/_event/20231115_picapayGuide_APP/picapayGuide1.html" target="_blank"
-                type="button" id="mileage-btn">PC방 사용 가이드</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== NOTICE ===================== -->
-      <footer id="site-footer">
-        <div id="footer-inner">
-          <h3 id="footer-title">유의사항</h3>
-          <ul id="footer-list">
-            <li class="footer-li">· 본 이벤트는 피카플레이 회원 전용 이벤트입니다. <br class="forMo"><a
-                href="https://blog.naver.com/playcraftbox/223126575684" target="_blank">[참여방법]</a></li>
-            <li class="footer-li">· 본 이벤트는 PC방 또는 개인 PC에서 모두 참여가 가능하며, 중복 참여는 불가합니다.</li>
-            <li class="footer-li">· 본 이벤트는 PC방에서 피카플레이 계정으로 로그인 후 참여가 가능하며, 개인 PC에서는 크래프트박스 로그인 후 참여 가능합니다.</li>
-            <li class="footer-li">· 본 이벤트는 계정당 1일 1회, 마일리지 소진 시까지 참여 가능합니다.</li>
-            <li class="footer-li">· 본 이벤트는 마일리지 소진 현황에 따라 조기 종료 또는 연장될 수 있습니다.</li>
-            <li class="footer-li">· 이벤트 참여 전 크래프트박스 → 헤택박스 → 미션상세팝업 내 이벤트 참여 가능 여부를 확인해 주세요.</li>
-            <li class="footer-li">· 게임 플레이 시간 반영은 최대 30분 정도의 지연 시간이 발생할 수 있습니다.</li>
-            <li class="footer-li">· 지급받은 마일리지는 90일의 유효기간이 경과 시 자동 소멸됩니다.</li>
-            <li class="footer-li">· 이벤트 종료 표기는 실시간으로 반영되지 않을 수 있습니다.</li>
-            <li class="footer-li">· 부정한 방법으로 이벤트에 참여한 이력이 확인될 경우 보상이 회수될 수 있습니다.</li>
-            <li class="footer-li">· 미션 마일리지 오프라인 사용은 마일리지 가맹 PC방에서 먹거리, 요금제 구매 시 사용 가능합니다.</li>
-            <li class="footer-li">· 미션 마일리지 온라인 사용은 피카플레이 APP 또는 크래프트박스 헤택스에서 모바일 문화상품권으로 교환 가능합니다.</li>
-            <li class="footer-li">· 이벤트 관련 문의 및 불편사항은 피카플레이 또는 크래프트박스 고객센터 1:1 문의를 이용해 주세요.</li>
-          </ul>
-        </div>
-      </footer>
-
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════
-       공유하기 모달
-  ════════════════════════════════ -->
-  <div id="shareModal" class="share-modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle"
-    aria-hidden="true">
-    <div class="share-modal__dialog" role="document">
-      <button type="button" class="share-modal__close" id="shareModalClose" aria-label="닫기">&times;</button>
-      <h2 id="shareModalTitle" class="share-modal__title">공유하기</h2>
-      <div class="share-modal__grid">
-        <button type="button" class="share-item share-item--kakao" data-share="kakao" aria-label="카카오톡으로 공유">
-          <span class="share-item__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.32 4.66 6.73L5.5 21.5l4.2-2.47c.76.11 1.54.17 2.3.17 5.52 0 10-3.58 10-8S17.52 3 12 3z" />
-            </svg>
-          </span>
-          <span class="share-item__label">카카오톡</span>
-        </button>
-        <button type="button" class="share-item share-item--facebook" data-share="facebook" aria-label="페이스북으로 공유">
-          <span class="share-item__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.1h2.6V21h3.4z" />
-            </svg>
-          </span>
-          <span class="share-item__label">페이스북</span>
-        </button>
-        <button type="button" class="share-item share-item--twitter" data-share="twitter" aria-label="트위터(X)로 공유">
-          <span class="share-item__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
-            </svg>
-          </span>
-          <span class="share-item__label">트위터</span>
-        </button>
-        <button type="button" class="share-item share-item--naver" data-share="naver" aria-label="네이버 블로그로 공유">
-          <span class="share-item__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M13.91 12.03 9.94 6H6v12h4.09v-6.03L14.06 18H18V6h-4.09z" />
-            </svg>
-          </span>
-          <span class="share-item__label">네이버블로그</span>
-        </button>
-        <button type="button" class="share-item share-item--instagram" data-share="instagram"
-          aria-label="인스타그램 공유용 URL 복사">
-          <span class="share-item__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-            </svg>
-          </span>
-          <span class="share-item__label">인스타그램</span>
-        </button>
-        <button type="button" class="share-item share-item--copy" data-share="copy" aria-label="URL 복사">
-          <span class="share-item__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" />
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-            </svg>
-          </span>
-          <span class="share-item__label">URL 복사</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 복사 토스트와 모바일 공유하기 플로팅 버튼 -->
-  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">클립보드에 복사되었습니다.</div>
-  <div class="mobile-fab" role="group" aria-label="모바일 플로팅 버튼">
-    <button class="mobile-fab__btn" type="button" id="btnShareFloating" aria-label="공유하기">
-      <img src="assets/share_icon.svg" alt="" aria-hidden="true" loading="lazy">
-    </button>
-    <button class="mobile-fab__btn mobile-fab__btn--top" type="button" id="btnScrollTop" aria-label="맨 위로">
-      <span aria-hidden="true">TOP</span>
-    </button>
-  </div>
-
-  <script src="script.js"></script>
-
-  <style>
+    <style>
     @charset "UTF-8";
     * {
       box-sizing: border-box;
@@ -2081,6 +1764,325 @@
       }
     }    
   </style>
+</head>
+
+<body>
+  <!-- ═══════════════════════════════
+       HEADER
+  ════════════════════════════════ -->
+  <header class="cb-header" id="top">
+    <div class="cb-header__inner">
+      <div class="cb-header__notice-wrap">
+        <!-- PC방 토글 -->
+        <button class="toggle-btn" type="button" id="pcRoomToggle" data-state="off" aria-label="PC방 모드 토글">
+          <img class="toggle-btn__img" src="assets/off=off.png" alt="PC방 모드 OFF" loading="lazy">
+        </button>
+        <!-- [BACKEND] 공지 텍스트 동적 교체: header_notice_text -->
+        <p class="cb-header__notice">
+          본 이벤트는 <a href="https://picaplay.com/pcbang/main.do" target="_blank" rel="noopener noreferrer"><u>피카플레이 가맹
+              PC방</u></a> 또는 <b>개인PC에서</b> <a href="https://www.craftbox.co.kr/" target="_blank"
+            rel="noopener noreferrer"><u>크래프트박스 설치</u></a> 후 참여 가능합니다.
+        </p>
+      </div>
+      <!-- [BACKEND] 공유하기 버튼 - share_url 교체 -->
+      <button class="btn-share" type="button" id="btnShare" aria-label="공유하기">
+        <img src="assets/share_icon.svg" alt="share icon">
+        <span>공유하기</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="page-ambient"></div>
+    <div id="content-wrap">
+
+      <!-- ===================== HERO ===================== -->
+      <section id="hero">
+        <div id="hero-bg-wrap">
+          <img class="slot-img" src="assets/hero-bg.webp" alt="히어로 배경">
+          <img class="moSlot-img" src="assets/forMobBg03.webp" alt="모바일 히어로 배경">
+        </div>
+        <div id="bubbles-kv"></div>
+        <div id="hero-rays-wrap">
+          <div id="hero-rays-glow"></div>
+          <div id="hero-rays-beams"></div>
+        </div>
+        <div id="hero-content-wrap">
+          <div id="hero-inner">
+            <div id="hero-logos">
+              <div id="hero-logo-torch-wrap"><img id="hero-logo-torch-img" src="assets/logo-torch.webp"
+                  alt="TORCHLIGHT"></div>
+              <span id="hero-logo-x">✕</span>
+              <div id="hero-logo-craft-wrap"><img id="hero-logo-craft-img" src="assets/logo-craft.webp" alt="CRAFTBOX">
+              </div>
+            </div>
+            <div id="hero-label">토치라이트: 인피니트 <span class="hero-label-x">✕</span> 피카플레이 미션 이벤트</div>
+            <h1 id="hero-h">
+              <span class="hero-h-highlight">PC방</span>에서 즐기고, <br>보상까지 챙겨라!
+            </h1>
+            <p id="hero-sub">
+              피카 PC방에서 토치라이트: 인피니트를 플레이하고<br>플레이 시간 보상을 획득하세요.
+            </p>
+            <div id="hero-period">
+              <div id="hero-period-item1">
+                <span id="hero-period-label1">이벤트 기간</span>
+                <span id="hero-period-value1">2026. 07. 17(금) - 2026. 07. 26(일)</span>
+              </div>
+              <div class="hp-div"></div>
+              <div id="hero-period-item2">
+                <span id="hero-period-label2">참여대상</span>
+                <span id="hero-period-value2">피카플레이 회원</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ◇ section divider ◇ -->
+      <div class="divider">
+        <div class="divider-line divider-line-left"></div>
+        <div class="divider-ornament">
+          <span class="dv-dot dv-dot-sm"></span>
+          <span class="dv-dot dv-dot-md"></span>
+          <span class="dv-dot dv-dot-lg"></span>
+          <span class="dv-chevron dv-chevron-l"></span>
+          <span class="dv-center">
+            <span class="dv-center-dot"></span>
+          </span>
+          <span class="dv-chevron dv-chevron-r"></span>
+          <span class="dv-dot dv-dot-lg"></span>
+          <span class="dv-dot dv-dot-md"></span>
+          <span class="dv-dot dv-dot-sm"></span>
+        </div>
+        <div class="divider-line divider-line-right"></div>
+      </div>
+
+      <!-- ===================== COUPON ===================== -->
+      <section data-sec id="coupon-section">
+        <div id="coupon-bg-wrap"><img class="slot-img" src="assets/bg-coupon.webp" alt=""></div>
+        <div id="coupon-overlay"></div>
+        <div id="coupon-inner">
+          <div data-fade data-card id="coupon-card">
+            <div class="card-border-frame"></div>
+            <div id="coupon-head-wrap">
+              <img id="coupon-deco-img" src="assets/titleDeco.webp" alt="">
+              <h2 data-couponhead id="coupon-head">
+                <span class="ch-cyan">PC방</span>에서도, 집에서도!<br>매일 토치라이트: 인피니트 <br class="forMo"> <span
+                  class="ch-cyan">1시간</span> 플레이하고<br><span class="ch-gold">1,000M</span> 받아가세요~
+              </h2>
+            </div>
+            <div data-couponimg id="coupon-img-wrap">
+              <img class="slot-img" src="assets/coupon-img.webp" alt="1,000M 쿠폰">
+            </div>
+            <p data-botline id="coupon-botline">일일 1회 미션 완료 시<br class="forMo"> <span class="botline-gold">1,000M
+                지급</span><br class="forMo"><span class="botline-note">(소진 시까지 참여 가능)</span></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ◇ section divider ◇ -->
+      <div class="dividerSec">
+        <div class="divider-line divider-line-left"></div>
+        <div class="divider-ornament">
+          <span class="dv-dot dv-dot-sm"></span>
+          <span class="dv-dot dv-dot-md"></span>
+          <span class="dv-dot dv-dot-lg"></span>
+          <span class="dv-chevron dv-chevron-l"></span>
+          <span class="dv-center">
+            <span class="dv-center-dot"></span>
+          </span>
+          <span class="dv-chevron dv-chevron-r"></span>
+          <span class="dv-dot dv-dot-lg"></span>
+          <span class="dv-dot dv-dot-md"></span>
+          <span class="dv-dot dv-dot-sm"></span>
+        </div>
+        <div class="divider-line divider-line-right"></div>
+      </div>
+
+      <!-- ===================== HOW TO ===================== -->
+      <section data-sec id="howto-section">
+        <div id="howto-bg-wrap"><img class="slot-img" src="assets/bg-howto.webp" alt=""></div>
+        <div id="howto-overlay"></div>
+        <div id="bubbles-ev2"></div>
+        <div id="howto-inner">
+          <div data-fade data-card id="howto-card">
+            <div class="card-border-frame"></div>
+            <div id="howto-head-wrap">
+              <img class="deco-img-sm" src="assets/titleDeco.webp" alt="">
+              <h2 data-h2 id="howto-title">이벤트 참여방법</h2>
+            </div>
+            <div id="howto-tabs-outer">
+              <div id="howto-tabs-inner">
+                <button type="button" id="tab-pc">PC방<br class="forMo"> 참여방법</button>
+                <button type="button" id="tab-personal">개인 PC <br class="forMo">참여방법</button>
+              </div>
+            </div>
+            <div id="steps"></div>
+            <p data-botline id="howto-botline">일일 1회 미션 완료 시<br class="forMo"> <span class="botline-blue">1,000M 지급<br
+                  class="forMo"></span><span class="botline-note">(소진 시까지 참여 가능)</span></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ◇ section divider ◇ -->
+      <div class="dividerNext">
+        <div class="divider-line divider-line-left"></div>
+        <div class="divider-ornament">
+          <span class="dv-dot dv-dot-sm"></span>
+          <span class="dv-dot dv-dot-md"></span>
+          <span class="dv-dot dv-dot-lg"></span>
+          <span class="dv-chevron dv-chevron-l"></span>
+          <span class="dv-center">
+            <span class="dv-center-dot"></span>
+          </span>
+          <span class="dv-chevron dv-chevron-r"></span>
+          <span class="dv-dot dv-dot-lg"></span>
+          <span class="dv-dot dv-dot-md"></span>
+          <span class="dv-dot dv-dot-sm"></span>
+        </div>
+        <div class="divider-line divider-line-right"></div>
+      </div>
+
+      <!-- ===================== MILEAGE ===================== -->
+      <section data-sec id="mileage-section">
+        <div id="mileage-bg-wrap"><img class="slot-img" src="assets/bg-mileage.webp" alt=""></div>
+        <div id="mileage-overlay"></div>
+        <div id="mileage-inner">
+          <div data-fade data-card id="mileage-card">
+            <div class="card-border-frame"></div>
+            <div id="mileage-head-wrap">
+              <img class="deco-img-sm" src="assets/titleDeco.webp" alt="">
+              <h2 data-h2 id="mileage-title">마일리지 사용처</h2>
+            </div>
+            <p data-mtext id="mileage-text">피카 가맹 PC방에서<br class="forMo"> <span class="mtext-accent">요금제 및 먹거리
+                결제</span><br>크래프트박스 또는 피카플레이 APP에서<br class="forMo"> <span class="mtext-accent">모바일 문화상품권으로 교환</span>
+            </p>
+            <div id="mileage-notes-wrap">
+              <p class="mileage-note">※ 미션으로 지급되는 <br class="forMo">마일리지의 유효기간은<br class="forMo"> 90일 입니다.</p>
+              <p class="mileage-note">※ 일부 매장에서는 마일리지 사용이 <br class="forMo">제한 될 수 있습니다.</p>
+            </div>
+            <div data-shots id="mileage-shots">
+              <div data-shot class="mileage-shot"><img class="slot-img" src="assets/mileage-shot-1.webp"
+                  alt="피카플레이 APP 화면"></div>
+              <div data-shot class="mileage-shot"><img class="slot-img" src="assets/mileage-shot-2.webp"
+                  alt="문화상품권 교환 화면"></div>
+            </div>
+            <div id="mileage-btn-wrap">
+              <a href="https://ics.mediaweb.co.kr/_event/20231115_picapayGuide_APP/picapayGuide1.html" target="_blank"
+                type="button" id="mileage-btn">PC방 사용 가이드</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== NOTICE ===================== -->
+      <footer id="site-footer">
+        <div id="footer-inner">
+          <h3 id="footer-title">유의사항</h3>
+          <ul id="footer-list">
+            <li class="footer-li">· 본 이벤트는 피카플레이 회원 전용 이벤트입니다. <br class="forMo"><a
+                href="https://blog.naver.com/playcraftbox/223126575684" target="_blank">[참여방법]</a></li>
+            <li class="footer-li">· 본 이벤트는 PC방 또는 개인 PC에서 모두 참여가 가능하며, 중복 참여는 불가합니다.</li>
+            <li class="footer-li">· 본 이벤트는 PC방에서 피카플레이 계정으로 로그인 후 참여가 가능하며, 개인 PC에서는 크래프트박스 로그인 후 참여 가능합니다.</li>
+            <li class="footer-li">· 본 이벤트는 계정당 1일 1회, 마일리지 소진 시까지 참여 가능합니다.</li>
+            <li class="footer-li">· 본 이벤트는 마일리지 소진 현황에 따라 조기 종료 또는 연장될 수 있습니다.</li>
+            <li class="footer-li">· 이벤트 참여 전 크래프트박스 → 헤택박스 → 미션상세팝업 내 이벤트 참여 가능 여부를 확인해 주세요.</li>
+            <li class="footer-li">· 게임 플레이 시간 반영은 최대 30분 정도의 지연 시간이 발생할 수 있습니다.</li>
+            <li class="footer-li">· 지급받은 마일리지는 90일의 유효기간이 경과 시 자동 소멸됩니다.</li>
+            <li class="footer-li">· 이벤트 종료 표기는 실시간으로 반영되지 않을 수 있습니다.</li>
+            <li class="footer-li">· 부정한 방법으로 이벤트에 참여한 이력이 확인될 경우 보상이 회수될 수 있습니다.</li>
+            <li class="footer-li">· 미션 마일리지 오프라인 사용은 마일리지 가맹 PC방에서 먹거리, 요금제 구매 시 사용 가능합니다.</li>
+            <li class="footer-li">· 미션 마일리지 온라인 사용은 피카플레이 APP 또는 크래프트박스 헤택스에서 모바일 문화상품권으로 교환 가능합니다.</li>
+            <li class="footer-li">· 이벤트 관련 문의 및 불편사항은 피카플레이 또는 크래프트박스 고객센터 1:1 문의를 이용해 주세요.</li>
+          </ul>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       공유하기 모달
+  ════════════════════════════════ -->
+  <div id="shareModal" class="share-modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle"
+    aria-hidden="true">
+    <div class="share-modal__dialog" role="document">
+      <button type="button" class="share-modal__close" id="shareModalClose" aria-label="닫기">&times;</button>
+      <h2 id="shareModalTitle" class="share-modal__title">공유하기</h2>
+      <div class="share-modal__grid">
+        <button type="button" class="share-item share-item--kakao" data-share="kakao" aria-label="카카오톡으로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.32 4.66 6.73L5.5 21.5l4.2-2.47c.76.11 1.54.17 2.3.17 5.52 0 10-3.58 10-8S17.52 3 12 3z" />
+            </svg>
+          </span>
+          <span class="share-item__label">카카오톡</span>
+        </button>
+        <button type="button" class="share-item share-item--facebook" data-share="facebook" aria-label="페이스북으로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.1h2.6V21h3.4z" />
+            </svg>
+          </span>
+          <span class="share-item__label">페이스북</span>
+        </button>
+        <button type="button" class="share-item share-item--twitter" data-share="twitter" aria-label="트위터(X)로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+            </svg>
+          </span>
+          <span class="share-item__label">트위터</span>
+        </button>
+        <button type="button" class="share-item share-item--naver" data-share="naver" aria-label="네이버 블로그로 공유">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.91 12.03 9.94 6H6v12h4.09v-6.03L14.06 18H18V6h-4.09z" />
+            </svg>
+          </span>
+          <span class="share-item__label">네이버블로그</span>
+        </button>
+        <button type="button" class="share-item share-item--instagram" data-share="instagram"
+          aria-label="인스타그램 공유용 URL 복사">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </span>
+          <span class="share-item__label">인스타그램</span>
+        </button>
+        <button type="button" class="share-item share-item--copy" data-share="copy" aria-label="URL 복사">
+          <span class="share-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          </span>
+          <span class="share-item__label">URL 복사</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 복사 토스트와 모바일 공유하기 플로팅 버튼 -->
+  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">클립보드에 복사되었습니다.</div>
+  <div class="mobile-fab" role="group" aria-label="모바일 플로팅 버튼">
+    <button class="mobile-fab__btn" type="button" id="btnShareFloating" aria-label="공유하기">
+      <img src="assets/share_icon.svg" alt="" aria-hidden="true" loading="lazy">
+    </button>
+    <button class="mobile-fab__btn mobile-fab__btn--top" type="button" id="btnScrollTop" aria-label="맨 위로">
+      <span aria-hidden="true">TOP</span>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+
+
 </body>
 
 </html>
